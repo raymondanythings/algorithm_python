@@ -9,7 +9,7 @@ def judge(start=1, end=6):
                 with open(f"{os.getcwd()}/in{index}.txt", "rt", encoding="utf8") as sys.stdin:
                     result = str(func())
                 with open(f"{os.getcwd()}/out{index}.txt", "rt", encoding="utf8") as re:
-                    current = re.read()
+                    current = re.read().replace("\n", "")
                     txt = f"Case #{index} : "
                     if result == current:
                         print(txt, "Clear!")
