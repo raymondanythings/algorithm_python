@@ -9,6 +9,10 @@ from judge import judge
 def solve():
     n, k = map(int, input().split())
     li = [int(input()) for _ in range(n)]
+
+    # 방법 1
+
+    # 바이너리서치 시 lt , rt 최적값 찾기위해 lt <= rt 조건 사용 ==> lt,rt 최소거리일때 최적값
     lt = 1
     rt = max(li)
     res = 0
