@@ -15,9 +15,11 @@ def reverse(number: int) -> int:
 
 
 def is_prime(number: int) -> bool:
-    if number in [1, 2]:
+    if number == 1:
         return False
-    for i in range(2, number):
+    for i in range(
+        2, number // 2 + 1
+    ):  # 약수는 1X자기자신 ex) 15 => 1 X 15  따라서 2부터 시작하기때문에 2X자기자신 //2 가 최소값
         if number % i == 0:
             return False
     return True
@@ -30,6 +32,5 @@ for index in range(1, 6):
         for x in arr:
             tmp = reverse(x)
             if is_prime(tmp):
-                pass
-                # print(tmp, end=" ")
-        # print()
+                print(tmp, end=" ")
+        print()

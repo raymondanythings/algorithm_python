@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("/Users/yonghyunyeob/Documents/algorithm/inflearn/pythonalgorithm_formac")
 from judge import judge
 
 
