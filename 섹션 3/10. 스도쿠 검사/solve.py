@@ -31,38 +31,28 @@ def solve():
 
     # 방법 1
 
-    col = [[] for _ in range(9)]
-    box = [[] for _ in range(9)]
-    for page, x in enumerate(li):
-        if len(set(x)) != 9:
-            return "NO"
-        for i in range(3):
-            box[((page // 3) * 3) + i] += x[i * 3 : i * 3 + 3]
-        for j in range(9):
-            col[j].append(x[j])
-    for x in col:
-        if len(set(x)) != 9:
-            return "NO"
-    for x in box:
-        if len(set(x)) != 9:
-            return "NO"
-    return "YES"
+    # col = [[] for _ in range(9)]
+    # box = [[] for _ in range(9)]
+    # for page, x in enumerate(li):
+    #     if len(set(x)) != 9:
+    #         return "NO"
+    #     for i in range(3):
+    #         box[((page // 3) * 3) + i] += x[i * 3 : i * 3 + 3]
+    #     for j in range(9):
+    #         col[j].append(x[j])
+    # for x in col:
+    #     if len(set(x)) != 9:
+    #         return "NO"
+    # for x in box:
+    #     if len(set(x)) != 9:
+    #         return "NO"
+    # return "YES"
 
     # 방법 2
 
     if check(li):
         return "YES"
-    else:
-        return "NO"
+    return "NO"
 
 
 solve()
-
-
-"""
-0 1 2
-
-0 1 2 3 4 5 6
-
-
-"""
