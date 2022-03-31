@@ -1,24 +1,28 @@
-"""
--10 -10 2 3 3 6 7 10 10
+n = 3
+target = "abcd"
+p = ["P x", "L", "P y"]
+result = ""
+pointer = len(target)
+for i in range(n):
+    m = p[i].strip().split()
+    v = m[0]
+    if v == "P":
+        target = target[:pointer] + m[1] + target[pointer:]
+        pointer += 1
+    elif v == "L":
+        if pointer != 0:
+            pointer -= 1
+    elif v == "D":
+        if pointer != len(target):
+            pointer += 1
+    elif v == "B":
+        if pointer != 0:
+            target = target[: pointer - 1] + target[pointer:]
+            pointer -= 1
+
+print(target)
 
 """
-n = 10
-h_list = [6, 3, 2, 10, 10, 10, -10, -10, 7, 3]
-h_list.sort()
-m = 8
-t_list = [10, 9, -5, 2, 3, 4, 5, -10]
-t_list.sort()
+xabc
 
-for i in h_list:
-    lt = 0
-    rt = n - 1
-    cnt = 0
-    while lt <= rt:
-        mid = (lt + rt) // 2
-        if i < t_list[mid]:
-            rt = mid - 1
-        else:
-            cnt += 1
-            lt = mid + 1
-
-    print(cnt)
+"""
