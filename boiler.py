@@ -1,7 +1,7 @@
 import sys
+import os
 
-
-sys.path.insert(0, "/Users/yonghyunyeob/Documents/algorithm/inflearn/pythonalgorithm_formac")
+sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 from judge import judge
 
 
