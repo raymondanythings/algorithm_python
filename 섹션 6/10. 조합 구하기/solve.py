@@ -24,7 +24,7 @@ def DFS(L, s):
 def solve():
     global m, res, cnt, n, result
     n, m = map(int, input().split())
-    res = [0] * (n + 1)
+    res = [0] * m
     cnt = 0
     result = []
     DFS(0, 1)
