@@ -12,10 +12,10 @@ def solve():
 
     # 방법 1
     for x in range(n):
-        ab = n // 2
-        num = abs(ab - x)
-        last = n - num
-        result += sum(li[x][num:last])
+        ab = n // 2 # 2
+        num = abs(ab - x) # 2 - 1 = 1
+        last = n - num # 5 - 1 = 4
+        result += sum(li[x][num:last]) # 1 : 4
 
     # 방법 2
     # s = e = n // 2
