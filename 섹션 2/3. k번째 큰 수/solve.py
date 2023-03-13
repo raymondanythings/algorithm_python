@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("C:/Users/KitWorks/Documents/algorithm_python")
+sys.path.append("C:/Users/user/Documents/algorithm_python")
 from judge import judge
 
 

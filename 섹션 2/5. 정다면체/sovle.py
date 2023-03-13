@@ -1,14 +1,25 @@
 import sys
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        n, m = map(int, input().split())
-        li = [0 for i in range(n + m + 1)]
-        for i in range(1, n + 1):
-            for j in range(1, m + 1):
-                li[i + j] += 1
-        mx = max(li)
-        for i, x in enumerate(li):
-            if x == mx:
-                print(i, end=" ")
-        print()
+sys.path.append("C:/Users/user/Documents/algorithm_python")
+from judge import judge
+
+
+@judge()
+def solve():
+    n = list(map(int,input().split()))
+    return ' '.join(str(x) for x in range(min(n) + 1, max(n) + 2))
+
+
+solve()
+
+'''
+6 : 1 2 3 4 5 6
+
+4 : 1 2 3 4
+
+
+5 - 10
+4 - 9
+3 - 8
+2 - 7
+'''

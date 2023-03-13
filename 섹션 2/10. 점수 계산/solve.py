@@ -1,21 +1,24 @@
-from typing import List
 import sys
 
+sys.path.append("C:/Users/user/Documents/algorithm_python")
+from judge import judge
+from collections import deque
 
-def calc(values: List[int]) -> int:
-    acc = 0
-    result = 0
-    for i in values:
-        if i == 1:
-            acc += 1
-            result += acc
+@judge()
+def solve():
+    answer =0
+    n = int(input())
+    r = list(map(int,input().split()))
+    Q = deque(r)
+    s = 0
+    while Q:
+        score = Q.popleft()
+        if score == 0:
+            s = 0
         else:
-            acc = 0
-    return result
+            s += score
+            answer += s
+    return answer
 
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        n = int(input())
-        li = list(map(int, input().split()))
-        print(calc(li))
+solve()

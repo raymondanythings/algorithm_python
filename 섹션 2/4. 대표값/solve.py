@@ -1,19 +1,30 @@
 import sys
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        n = int(input())
-        arr = list(map(int, input().split()))
-        avg = round(sum(arr) / n)
-        min = float("inf")
-        for i, x in enumerate(arr):
-            tmp = abs(x - avg)
-            if tmp < min:
-                min = tmp
-                score = x
-                res = i + 1
-            elif tmp == min:
-                if x > score:
-                    score = x
-                    res = i + 1
-        print(avg, res)
+sys.path.append("C:/Users/user/Documents/algorithm_python")
+from judge import judge
+
+
+@judge()
+def solve():
+    n = int(input())
+    scores = list(map(int,input().split()))
+    avg = round(sum(scores) / n)
+    m = float('inf')
+    idx = 0
+    for i ,score in enumerate(scores):
+        tmp = abs(avg - score)
+        if tmp < m:
+            m = tmp
+            s = score
+            idx = i + 1
+        elif tmp == avg:
+            if score > s:
+                s = score
+                idx = i + 1
+    return f'{avg} {idx}'
+
+
+solve()
+
+
+
