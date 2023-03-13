@@ -1,14 +1,13 @@
 import sys
 
-for index in range(1, 6):
-    result = open(f"out{index}.txt", "rt", encoding="utf8")
-    sys.stdin = open(f"in{index}.txt", "rt", encoding="utf8")
+sys.path.append("C:/Users/KitWorks/Documents/algorithm_python")
+from judge import judge
 
-    T = int(input())
-    for i in range(T):
-        N, s, e, k = map(int, input().split())
-        arr = list(map(int, input().split()))[s - 1 : e]
-        arr.sort()
-        solve = f"#{i+1} {arr[k - 1]}"
-        print(solve)
-    print(" -- next --")
+
+@judge()
+def solve():
+    
+    return -1
+
+
+solve()

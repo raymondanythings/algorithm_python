@@ -1,14 +1,21 @@
 import sys
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        n, k = map(int, input().split())
-        li = list(map(int, input().split()))
-        res = set()
-        for i in range(n):
-            for j in range(i + 1, n):
-                for m in range(j + 1, n):
-                    res.add(li[i] + li[j] + li[m])
-        li = list(res)
-        li.sort(reverse=True)
-        print(li[k - 1])
+sys.path.append("C:/Users/KitWorks/Documents/algorithm_python")
+from judge import judge
+
+
+@judge()
+def solve():
+    N , K = map(int,input().split())
+    cards = list(map(int,input().split()))
+    re = set()
+    for i in range(N):
+        for j in range(i + 1, N):
+            for m in range(j + 1, N):
+                re.add(cards[i] + cards[j] + cards[m])
+    result = list(re)
+    result.sort(reverse=True)
+    return result[K -1]
+
+
+solve()

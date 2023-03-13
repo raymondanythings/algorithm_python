@@ -6,6 +6,7 @@ def judge(start=1, end=6):
     def set_deco(func):
         def wrapper():
             for index in range(start, end):
+                print(os.getcwd())
                 with open(f"{os.getcwd()}/in{index}.txt", "rt", encoding="utf8") as sys.stdin:
                     result = func()
                     if isinstance(result, list):
