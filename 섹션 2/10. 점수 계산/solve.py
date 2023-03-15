@@ -1,14 +1,20 @@
 import sys
+import os
 
-sys.path.append("C:/Users/user/Documents/algorithm_python")
+
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 from judge import judge
 from collections import deque
 
+
 @judge()
 def solve():
-    answer =0
+    answer = 0
     n = int(input())
-    r = list(map(int,input().split()))
+    r = list(map(int, input().split()))
     Q = deque(r)
     s = 0
     while Q:

@@ -1,21 +1,22 @@
+import os
 import sys
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        cards = list(range(1, 21))
-        for _ in range(10):
-            ai, bi = map(lambda x: x - 1, map(int, input().split()))
-            shuffled = cards[ai : bi + 1]
-            del cards[ai : bi + 1]
-            for i in shuffled:
-                cards.insert(ai, i)
+from judge import judge
 
-            # 방법 2
-            # for i in range((bi - ai + 1) // 2):
-            #     cards[ai + i], cards[bi - i] = cards[bi - i], cards[ai + i]
 
-        a = lambda x: print(x, end=" ")
-        for x in cards:
-            a(x)
-        print()
+@judge(start=1, end=2)
+def solve():
+    cards = [i for i in range(1, 21)]
+    for i in range(10):
+        s, e = map(lambda x: x - 1, map(int, input().split()))
+        for j in range((e - s + 1) // 2):
+            cards[s + j], cards[e-j] = cards[e - j], cards[s + j]
+    return ' '.join(map(str, cards))
+
+
+solve()

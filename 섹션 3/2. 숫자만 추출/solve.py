@@ -1,29 +1,27 @@
 import sys
-import re
+import os
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        n = input()
 
-        # 방법 1
-        # number = int(re.sub(r"[^0-9]", "", n))
-        # cnt = 2
-        # for x in range(2, number):
-        #     if number % x == 0:
-        #         cnt += 1
-        # print(f"{number}\n{cnt}\n")
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
+from judge import judge
 
-        # 방법 2
 
-        res = 0
-        for x in n:
-            if x.isdecimal():
-                print("x : ", x)
-                res = res * 10 + int(x)
+@judge()
+def solve():
+    n: str = input()
+    answer = 0
+    for i in n:
+        if i.isdecimal():
+            answer = answer * 10 + int(i)
+    de = 0
+    for j in range(1, int(answer ** 0.5) + 1):
+        if answer % j == 0:
+            de += 1
 
-        print(res)
-        cnt = 0
-        for i in range(1, res + 1):
-            if res % i == 0:
-                cnt += 1
-        print(cnt)
+    return str(answer) + str(de * 2)
+
+
+solve()

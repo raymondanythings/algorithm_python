@@ -1,22 +1,29 @@
 import sys
+import os
 
-for index in range(1, 6):
-    with open(f"in{index}.txt", "rt", encoding="utf8") as sys.stdin:
-        leng = int(input())
-        for x in range(leng):
-            st = input().lower()
 
-            # 방법 1
-            if st == st[::-1]:
-                print(f"#{x+1} YES")
-            else:
-                print(f"#{x+1} NO")
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
+from judge import judge
 
-            # 방법 2
-            size = len(st)
-            for j in range(size // 2):
-                if st[j] != st[-1 - j]:
-                    print(f"#{x+1} NO")
-                    break
-            else:
-                print(f"#{x+1} YES")
+
+@judge()
+def solve():
+    n = int(input())
+    answer = ''
+    for i in range(1, n + 1):
+        s = input()
+        for j in range(len(s) // 2):
+            if s[j].lower() != s[(len(s)-1) - j].lower():
+                answer += f'#{i} NO'
+                break
+        else:
+            answer += f'#{i} YES'
+    # answer = 0
+
+    return answer
+
+
+solve()

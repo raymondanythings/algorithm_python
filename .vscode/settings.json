@@ -1,3 +1,5 @@
 {
-  "nuxt.isNuxtApp": false
+  "nuxt.isNuxtApp": false,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }
