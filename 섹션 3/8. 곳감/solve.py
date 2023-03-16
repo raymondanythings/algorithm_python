@@ -1,54 +1,80 @@
 import sys
+import os
 
-sys.path.insert(0, "/Users/yonghyunyeob/Documents/algorithm/inflearn/pythonalgorithm_formac")
+
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 from judge import judge
 
 
 @judge()
 def solve():
+    answer = 0
     n = int(input())
-    li = [list(map(int, input().split())) for _ in range(n)]
-    exe_n = int(input())
+    arr = [list(map(int, input().split())) for _ in range(n)]
 
-    # 방법 1
-    # exe_list = [list(map(int, input().split())) for _ in range(exe_n)]
-    # for row, direction, moved in exe_list:
-    #     if moved != 0:
-    #         target_list = li[row - 1]
-    #         init_list = [0] * n
-    #         if not direction:
-    #             for i in range(n):
-    #                 init_list[i] = target_list[(moved + i) % n]
-    #         else:
-    #             for i, v in enumerate(target_list):
-    #                 init_list[moved] = v
-    #                 moved += 1
-    #                 if moved >= n:
-    #                     moved = 0
-    #         li[row - 1] = init_list
+    m = int(input())
 
-    # 방법 2
+    for _ in range(m):
+        row, direction, time = map(int, input().split())
+        target = arr[row-1].copy()
+        for i, t in enumerate(target):
+            if direction == 0:
+                arr[row-1][(i - time) % n] = t
+            else:
+                arr[row-1][(i + time) % n] = t
+    for j in range(n):
+        middle = n // 2
+        s = abs(abs(middle - j) - middle)
+        l = n - s
+        answer += sum(arr[j][s:l])
 
-    for i in range(exe_n):
-        h, t, k = map(int, input().split())
-        if t == 0:
-            for _ in range(k):
-                li[h - 1].append(li[h - 1].pop(0))
-        else:
-            for _ in range(k):
-                li[h - 1].insert(0, li[h - 1].pop())
+    return answer
 
-    s, e = 0, n
-    result = 0
-    for i in range(n):
-        result += sum(li[i][s:e])
-        if i < n // 2:
-            s += 1
-            e -= 1
-        else:
-            s -= 1
-            e += 1
-    return result
+
+# @judge()
+# def solve():
+#     n = int(input())
+#     a = [list(map(int, input().split())) for _ in range(n)]
+#     m = int(input())
+#     for i in range(m):
+#         h, t, k = map(int, input().split())
+#         if t == 0:
+#             for _ in range(k):
+#                 a[h-1].append(a[h-1].pop(0))
+#         else:
+#             for _ in range(k):
+#                 a[h-1].insert(0, a[h-1].pop())
+#     res = 0
+#     s = 0
+#     e = n-1
+#     for i in range(n):
+#         for j in range(s, e+1):
+#             res += a[i][j]
+#         if i < n // 2:
+#             s += 1
+#             e -= 1
+#         else:
+#             s -= 1
+#             e += 1
+#     return res
 
 
 solve()
+'''
+5 5 5 5 5
+2 2 2 2 2
+
+0 1 2 3 4
+0 1 2 1 0
+
+2 - 0 - 2 = 0
+abs(abs(2 - 1) - 2) = 1
+abs(abs(2 - 2) - 2) = 2
+abs(abs(2 - 3) - 2) = 1
+2 - 4 - 2 = -4
+
+abs(n // 2 - 1) - n // 2
+'''

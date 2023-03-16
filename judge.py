@@ -1,5 +1,7 @@
 import sys
 import os
+import math
+import time
 
 
 def judge(start=1, end=6):
@@ -7,6 +9,7 @@ def judge(start=1, end=6):
         def wrapper():
             for index in range(start, end):
                 print(os.getcwd())
+                start_time = time.time()
                 with open(f"{os.getcwd()}/in{index}.txt", "rt", encoding="utf8") as sys.stdin:
                     result = func()
                     if isinstance(result, list):
@@ -22,9 +25,11 @@ def judge(start=1, end=6):
                     print("CURRENT : ", current)
                     print("ANSWER : ", result)
                     if result == current:
-                        print(txt, "Clear!\n")
+                        print(txt, "Clear!")
                     else:
-                        print(txt, "Error!\n")
+                        print(txt, "Error!")
+                end_time = time.time()
+                print(f'TIME: {end_time - start_time: .8f} sec \n')
             return
 
         return wrapper

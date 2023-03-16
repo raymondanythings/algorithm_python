@@ -1,36 +1,53 @@
 import sys
+import os
 
-sys.path.insert(0, "/Users/yonghyunyeob/Documents/algorithm/inflearn/pythonalgorithm_formac")
+
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 from judge import judge
 
 
-@judge
+@judge()
 def solve():
+
+    # solve 1
+
+    # n = int(input())
+    # arr = [list(map(int, input().split())) for _ in range(n)]
+    # answer = 0
+    # for i in range(n):
+    #     s = abs(n // 2 - i)
+    #     l = n - s
+    #     answer += sum(arr[i][s:l])
+    # return answer
+
+    # solve 2
     n = int(input())
-    result = 0
-    li = [list(map(int, input().split())) for _ in range(n)]
-
-    # 방법 1
-    for x in range(n):
-        ab = n // 2 # 2
-        num = abs(ab - x) # 2 - 1 = 1
-        last = n - num # 5 - 1 = 4
-        result += sum(li[x][num:last]) # 1 : 4
-
-    # 방법 2
-    # s = e = n // 2
-    # for x in range(n):
-    #     for y in range(s, e + 1):
-    #         print(x, y)
-    #         result += li[x][y]
-    #     if x < n // 2:
-    #         s -= 1
-    #         e += 1
-    #     else:
-    #         s += 1
-    #         e -= 1
-
-    return result
+    arr = [list(map(int, input().split())) for _ in range(n)]
+    answer = 0
+    s = e = n // 2
+    for i in range(n):
+        for j in range(s, e+1):
+            answer += arr[i][j]
+        if i < n // 2:
+            s -= 1
+            e += 1
+        else:
+            s += 1
+            e -= 1
+    return answer
 
 
 solve()
+'''
+7 7 7 7 7 7 7
+
+3 3 3 3 3 3 3
+0 1 2 3 4 5 6
+3 2 1 0 1 2 3
+
+
+
+'''
