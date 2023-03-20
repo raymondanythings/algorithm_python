@@ -1,38 +1,33 @@
 import sys
+import os
 
 
-sys.path.insert(0, "/Users/yonghyunyeob/Documents/algorithm/inflearn/pythonalgorithm_formac")
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 from judge import judge
 
 
 @judge()
 def solve():
-    n, k = map(int, input().split())
+    n, m = map(int, input().split())
     li = list(map(int, input().split()))
     li.sort()
+    # for i in range(n):
+    #     if li[i] == m:
+    #         return i + 1
 
-    # 방법 1
-    # return li.index(k) + 1
-
-    # 방법 2 -> 이분탐색 => 바이너리 서치 ** 중요 **
-
-    """
-    * 바이너리서치
-
-    lt = 리스트 시작점 선택자
-    rt = 리스트 마지막점 선택자
-    mid = 전체 리스트 크기의 중간 선택자 ==> (lt + rt) // 2
-    """
     lt = 0
     rt = n - 1
-    while True:
+    while lt <= rt:
         mid = (lt + rt) // 2
-        if li[mid] > k:
-            rt = mid - 1
-        elif li[mid] < k:
-            lt = mid + 1
-        else:
+        if li[mid] == m:
             return mid + 1
+        elif li[mid] > m:
+            rt = mid - 1
+        else:
+            lt = mid + 1
 
 
 solve()

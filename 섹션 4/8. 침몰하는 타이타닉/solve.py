@@ -1,9 +1,13 @@
-from collections import deque
 import sys
+import os
+from collections import deque
 
-
-sys.path.insert(0, "/Users/yonghyunyeob/Documents/algorithm/inflearn/pythonalgorithm_formac")
+if os.name == 'nt':
+    sys.path.insert(0, "\\".join(os.getcwd().split("\\")[:-2]))
+else:
+    sys.path.insert(0, "/".join(os.getcwd().split("/")[:-2]))
 from judge import judge
+
 
 
 def quick_sort(arr, start, end):
